@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 
 # Ensure DB directories exist if using sqlite
 db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 connect_args = {}
 if db_url.startswith("sqlite"):
